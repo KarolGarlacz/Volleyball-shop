@@ -36,14 +36,15 @@ public class App {
 
             switch(reader.readLine()){
                 case "1":
-                    // Gui.showAllProducts(database.getItems());
+                     Gui.showAllProducts(database.getItems());
                     break;
                 case "2":
                     System.out.println("Enter the code of the selected product");
-                  //  gui.showBuyProduct(database.findProduct(reader.readLine()));
-                  // gui.showBuyProduct((Boolean) database.findProduct(reader.readLine()));
+
+                 Gui.showAvailableProduct(database.AvailableProduct(reader.readLine()));
                     System.out.println("How many pieces do you want to buy?");
-                   // gui.showBuyProduct(database.buyProduct(reader.readLine()));
+                    //String Quantity = reader.readLine();
+                   Gui.showBuyProduct(database.BuyProduct(reader.readLine()));
                     break;
                 case "3":
                     //kod

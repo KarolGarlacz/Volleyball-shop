@@ -4,6 +4,7 @@ import com.volleyballshop.products.Balls;
 import com.volleyballshop.products.Items;
 import com.volleyballshop.products.Shoes;
 import com.volleyballshop.products.User;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,18 +27,31 @@ public class DataBase {
         this.items.add(new Shoes(46, "Adidas", "yellow", "indoor", 450, false, 20, "555", "female"));
         this.items.add(new Shoes(48, "Nike", "black", "indoor", 600, false, 20, "666", "male"));
 
-        this.users.add(new User("admin","admin"));
-        this.users.add(new User("host", "host"));
+        this.users.add(new User("admin", DigestUtils.md5Hex("admin")));
+        this.users.add(new User("host", DigestUtils.md5Hex("host")));
     }
     public List<Items> getItems(){
+
         return items;
     }
 
 
-  /*  public boolean buyProduct(String codeQR){
+    public boolean AvailableProduct(String codeQR){
         Items item = findProduct(codeQR);
-        if(item != null && !item.isSold()){
+        if(item != null && item.getQuantity() > 0){
                 item.setSold(true);
+
+            return true;
+
+        }
+        return false;
+    }
+//////// Problem z ustawieniem ilości sztuk po zrobieniu zakupów
+    public boolean BuyProduct(String codeQR){
+        Items item = findProduct(codeQR);
+        if(item != null && item.getQuantity() > 0){
+            item.setQuantity(5);
+
             return true;
 
         }
@@ -45,24 +59,18 @@ public class DataBase {
     }
 
 
-    public boolean findProduct(String codeQR) {
+    private Items findProduct(String codeQR) {
         for (Items item : this.items) {
             if (item.getCodeQR().equals(codeQR)) {
-                return true;
+                return item;
             }
         }
-        return false;
-    }*/
- public Items findProduct(String codeQR){
-     for( Items item : this.items){
-         if(item.getCodeQR().equals(item)){
-             return item;
-         }
-     }return null;
- }
+        return null;
+    }
+
  public boolean confirmation(String login, String password){
      for(User currentUser : this.users){
-         if(currentUser.getLogin().equals(login) && currentUser.getPassword().equals(password)){
+         if(currentUser.getLogin().equals(login) && currentUser.getPassword().equals(DigestUtils.md5Hex(password))){
              return true;
          }
      }return false;

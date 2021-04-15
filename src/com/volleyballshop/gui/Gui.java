@@ -4,6 +4,8 @@ import com.volleyballshop.products.Balls;
 import com.volleyballshop.products.Items;
 import com.volleyballshop.products.Shoes;
 
+import java.util.List;
+
 public class Gui {
     static public void showMainMenu(){
         System.out.println("1. Assortment");
@@ -11,7 +13,7 @@ public class Gui {
         System.out.println("3. Return / Complaint");
         System.out.println("4. Exit - thanks for shopping");
     }
-    static void showAllProducts(Items[] items){
+    static public void showAllProducts(List<Items> items){
         for(Items item: items){
             StringBuilder sb = new StringBuilder();
             sb.append("Size: ")
@@ -46,13 +48,20 @@ public class Gui {
         }
 
     }
-//    public void showBuyProduct(){
-//        if(){
-//         System.out.println("Available product");
-//
-//       }else{
-//            System.out.println("try again");
-//        }
-//
-//    }
+    static public void showAvailableProduct(boolean AvailableProduct){
+        if(AvailableProduct){
+         System.out.println("Available product");
+
+       }else{
+            System.out.println("try again");
+        }
+    }
+    static public void showBuyProduct(boolean BuyProduct){
+        if(BuyProduct){
+            System.out.println("You buy products" );
+
+        }else{
+            System.out.println("try again");
+        }
+    }
 }

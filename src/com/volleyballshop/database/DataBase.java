@@ -39,23 +39,25 @@ public class DataBase {
     public boolean AvailableProduct(String codeQR){
         Items item = findProduct(codeQR);
         if(item != null && item.getQuantity() > 0){
-                item.setSold(true);
-
+                //item.setSold(true);
+                //item.setQuantity(5) ;
             return true;
 
+        }else if(item.getQuantity() == 0){
+            item.setSold(true);
         }
         return false;
     }
 //////// Problem z ustawieniem ilości sztuk po zrobieniu zakupów
-    public boolean BuyProduct(String codeQR){
+    public Items BuyProduct(String codeQR){
         Items item = findProduct(codeQR);
         if(item != null && item.getQuantity() > 0){
             item.setQuantity(5);
 
-            return true;
+            return item;
 
         }
-        return false;
+        return null;
     }
 
 

@@ -1,7 +1,7 @@
 package com.volleyballshop.gui;
 
-import com.volleyballshop.products.Balls;
-import com.volleyballshop.products.Items;
+import com.volleyballshop.products.Ball;
+import com.volleyballshop.products.Item;
 import com.volleyballshop.products.Shoes;
 
 import java.util.List;
@@ -13,8 +13,8 @@ public class Gui {
         System.out.println("3. Return / Complaint");
         System.out.println("4. Exit - thanks for shopping");
     }
-    static public void showAllProducts(List<Items> items){
-        for(Items item: items){
+    static public void showAllProducts(List<Item> items){
+        for(Item item: items){
             StringBuilder sb = new StringBuilder();
             sb.append("Size: ")
                     .append(item.getSize())
@@ -39,8 +39,8 @@ public class Gui {
                         .append(shoe.getSex());
 
             }
-            if(item instanceof Balls){
-                Balls ball = (Balls) item;
+            if(item instanceof Ball){
+                Ball ball = (Ball) item;
                 sb.append(" Material: ")
                         .append(ball.getMaterial());
             }

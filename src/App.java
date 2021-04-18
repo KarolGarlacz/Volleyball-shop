@@ -40,11 +40,10 @@ public class App {
                     break;
                 case "2":
                     System.out.println("Enter the code of the selected product");
-
-                 Gui.showAvailableProduct(database.AvailableProduct(reader.readLine()));
+                String qrCode = reader.readLine();
+                 Gui.showAvailableProduct(database.availableProduct(qrCode));
                     System.out.println("How many pieces do you want to buy?");
-                    //String Quantity = reader.readLine();
-                   Gui.showBuyProduct(database.BuyProduct(reader.readLine()));
+                   Gui.showBuyProduct(database.buyProduct(qrCode, Integer.parseInt(reader.readLine())));
                     break;
                 case "3":
                     //kod

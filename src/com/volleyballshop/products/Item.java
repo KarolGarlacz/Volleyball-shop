@@ -1,6 +1,6 @@
 package com.volleyballshop.products;
 
-public class Items {
+public class Item {
     private int size;
     private String model;
     private String color;
@@ -12,7 +12,7 @@ public class Items {
 
 
 
-    public Items(int size, String model, String color, String destiny, int price, boolean sold, int quantity, String codeQR) {
+    public Item(int size, String model, String color, String destiny, int price, boolean sold, int quantity, String codeQR) {
     this.size = size;
     this.model = model;
     this.color = color;

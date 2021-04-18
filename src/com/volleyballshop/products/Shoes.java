@@ -1,6 +1,6 @@
 package com.volleyballshop.products;
 
-public class Shoes extends Items{
+public class Shoes extends Item {
 
     private String sex;
 

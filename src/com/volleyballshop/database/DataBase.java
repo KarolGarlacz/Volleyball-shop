@@ -14,6 +14,7 @@ public class DataBase {
 
     private List<Item> items = new ArrayList<>();
     private List<User> users = new ArrayList<>();
+    private static DataBase instance = new DataBase();
 
 
     //private Items[] items = new Items[6];
@@ -34,7 +35,12 @@ public class DataBase {
 
         return items;
     }
-
+    public static DataBase getInstance(){
+        if(DataBase.instance == null){
+            DataBase.instance = new DataBase();
+        }
+        return DataBase.instance;
+    }
 
     public boolean availableProduct(String codeQR){
         Item item = findProduct(codeQR);
@@ -45,7 +51,7 @@ public class DataBase {
         }
         return false;
     }
-//////// Problem z ustawieniem ilości sztuk po zrobieniu zakupów
+
     public boolean buyProduct(String codeQR, int quantity){
         Item item = findProduct(codeQR);
         if(item != null && item.getQuantity() >= quantity){
@@ -53,12 +59,21 @@ public class DataBase {
             if(item != null && item.getQuantity() == 0){
                 item.setSold(true);
             return true;
-
-        }
+            }
         }
         return false;
     }
-
+    public boolean returnProduct(String codeQR, int quantity){
+        Item item = findProduct(codeQR);
+        if(item != null && item.getQuantity() >= quantity){
+            item.setQuantity(item.getQuantity() + quantity);
+            if(item != null && item.getQuantity() > 0){
+                item.setSold(false);
+                return true;
+            }
+        }
+        return false;
+    }
 
     private Item findProduct(String codeQR) {
         for (Item item : this.items) {
